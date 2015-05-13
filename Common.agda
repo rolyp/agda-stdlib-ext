@@ -11,7 +11,7 @@ module Common where
    open import Relation.Binary.PropositionalEquality as P using (_≡_; subst)
    open import Relation.Nullary
 
-   -- Extensional equivalence over functions.
+   -- Extensional equivalence for functions.
    infix 4 _≃ₑ_
    _≃ₑ_ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} (f g : (x : A) → B x) → Set _
    f ≃ₑ g = ∀ x → f x ≡ g x
