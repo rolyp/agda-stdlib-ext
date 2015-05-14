@@ -10,7 +10,7 @@ module Ext.Data.FiniteMap.Properties
    (isStrictTotalOrder : IsSTO _≡_ _<_) where
 
    import Ext.Data.FiniteMap
-   open module FiniteMap {𝒗} (A : Key → Set 𝒗) = Common.Data.FiniteMap A isStrictTotalOrder
+   open module FiniteMap {𝒗} (A : Key → Set 𝒗) = Ext.Data.FiniteMap A isStrictTotalOrder
    open Indexed using ([]; _↦_∷[_]_)
 
    _<$′>_ : ∀ {𝒗} {A B : Key → Set 𝒗} {l u} →
