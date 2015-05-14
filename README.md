@@ -1,2 +1,2 @@
 # agda-common
-Some useful extensions to the standard library
+Some useful additions to the standard library.

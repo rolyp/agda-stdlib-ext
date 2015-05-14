@@ -16,11 +16,14 @@ module Common where
    _≃ₑ_ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} (f g : (x : A) → B x) → Set _
    f ≃ₑ g = ∀ x → f x ≡ g x
 
+   ≃ₑ-sym : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} → Symmetric (_≃ₑ_ {B = B})
+   ≃ₑ-sym = _∘_ P.sym
+
    ≃ₑ-equiv : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} → IsEquivalence (_≃ₑ_ {B = B})
    ≃ₑ-equiv =
       record {
          refl = λ _ → P.refl;
-         sym = _∘_ P.sym;
+         sym = ≃ₑ-sym;
          trans = λ { {i = f} {g} {h} f≃g g≃h x → P.trans (f≃g x) (g≃h x)}
       }
 
