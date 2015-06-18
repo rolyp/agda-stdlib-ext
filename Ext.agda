@@ -45,16 +45,6 @@ module Ext where
            (f : (x : A) (y : B x) (z : C x y) → D x y z) → x ≅ y → u ≅ v → w ≅ z → f x u w ≅ f y v z
    ≅-cong₃ f ≅-refl ≅-refl ≅-refl = ≅-refl
 
-   -- TODO: delete these two.
-   cong′ : ∀ {a b} {A : Set a} {B : A → Set b} {x y}
-          (f : (x : A) → B x) → x ≅ y → f x ≅ f y
-   cong′ f ≅-refl = ≅-refl
-
-   -- From https://lists.chalmers.se/pipermail/agda/2014/006469.html.
-   i-cong : ∀ {𝑖 𝑎 𝑏} {I : Set 𝑖} {A : I → Set 𝑎} {B : I → Set 𝑏}
-            (f : {i : I} → A i → B i) {i j : I} → i ≡ j → {x : A i} {y : A j} → x ≅ y → f x ≅ f y
-   i-cong f P.refl ≅-refl = ≅-refl
-
    -- From http://stackoverflow.com/questions/24139810.
    hcong : ∀ {𝑖 𝑎 𝑏} {I : Set 𝑖} (A : I → Set 𝑎) {B : {k : I} → A k → Set 𝑏}
            {i j : I} {x : A i} {y : A j} → i ≡ j → (f : {k : I} → (x : A k) → B x) → x ≅ y → f x ≅ f y
