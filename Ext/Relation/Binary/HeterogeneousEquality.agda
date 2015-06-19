@@ -14,8 +14,9 @@ module Ext.Relation.Binary.HeterogeneousEquality where
    ≅-cong₃ f refl refl refl = refl
 
    -- These adapted from http://stackoverflow.com/questions/24139810. Seems that A needs to be explicit.
-   ≅-subst : ∀ {a} {A : Set a} {p} → (P : A → Set p) → ∀ {x₁ x₂} → x₁ ≅ x₂ → P x₁ → P x₂
-   ≅-subst = {!!}
+   ≅-subst✴ : ∀ {𝑖 𝑎 𝑝} {I : Set 𝑖} (A : I → Set 𝑎) (P : {k : I} → A k → Set 𝑝)
+              {i j} {x₁ : A i} {x₂ : A j} → i ≡ j → x₁ ≅ x₂ → P x₁ → P x₂
+   ≅-subst✴ _ _ P.refl refl p = p
 
 --   ≅-subst₂ : ∀ {a b p} {A : Set a} {B : Set b} (P : A → B → Set p) →
 --        ∀ {x₁ x₂ y₁ y₂} → x₁ ≅ x₂ → y₁ ≅ y₂ → P x₁ y₁ → P x₂ y₂
