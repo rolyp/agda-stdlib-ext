@@ -23,6 +23,12 @@ module Ext.Relation.Binary.HeterogeneousEquality where
                {i j} {x₁ : A i} {x₂ : A j} {y₁ y₂} → i ≡ j → x₁ ≅ x₂ → y₁ ≅ y₂ → P x₁ y₁ → P x₂ y₂
    ≅-subst✴₂ _ _ P.refl refl refl p = p
 
+   ≅-subst✴₃ : ∀ {𝑖 𝑎 𝑏 𝑐 𝑝} {I : Set 𝑖} (A : I → Set 𝑎) {B : ∀ {k} → A k → Set 𝑏}
+               {C : ∀ {k} (x : A k) → B x → Set 𝑐} (P : ∀ {k} (x : A k) (y : B x) → C x y → Set 𝑝)
+               {i j} {x₁ : A i} {x₂ : A j} {y₁ y₂ z₁ z₂} →
+               i ≡ j → x₁ ≅ x₂ → y₁ ≅ y₂ → z₁ ≅ z₂ → P x₁ y₁ z₁ → P x₂ y₂ z₂
+   ≅-subst✴₃ _ _ P.refl refl refl refl p = p
+
    ≅-cong✴ : ∀ {𝑖 𝑎 𝑏} {I : Set 𝑖} (A : I → Set 𝑎) {B : ∀ {k} → A k → Set 𝑏}
              {i j} {x : A i} {y : A j} → i ≡ j → (f : ∀ {k} (x : A k) → B x) → x ≅ y → f x ≅ f y
    ≅-cong✴ _ P.refl _ refl = refl
