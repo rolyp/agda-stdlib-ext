@@ -1,4 +1,4 @@
-{- TODO: rename these to drop the ≅- prefix. -}
+{- TODO: Drop the ≅- prefix for consistency with the standard library. -}
 module Ext.Relation.Binary.HeterogeneousEquality where
 
    open import Relation.Binary.HeterogeneousEquality
@@ -14,6 +14,12 @@ module Ext.Relation.Binary.HeterogeneousEquality where
    ≅-cong₃ f refl refl refl = refl
 
    -- These adapted from http://stackoverflow.com/questions/24139810. Seems that A needs to be explicit.
+   ≅-subst : ∀ {a} {A : Set a} {p} → (P : A → Set p) → ∀ {x₁ x₂} → x₁ ≅ x₂ → P x₁ → P x₂
+   ≅-subst = {!!}
+
+--   ≅-subst₂ : ∀ {a b p} {A : Set a} {B : Set b} (P : A → B → Set p) →
+--        ∀ {x₁ x₂ y₁ y₂} → x₁ ≅ x₂ → y₁ ≅ y₂ → P x₁ y₁ → P x₂ y₂
+
    ≅-cong✴ : ∀ {𝑖 𝑎 𝑏} {I : Set 𝑖} (A : I → Set 𝑎) {B : {k : I} → A k → Set 𝑏}
              {i j} {x : A i} {y : A j} → i ≡ j → (f : {k : I} (x : A k) → B x) → x ≅ y → f x ≅ f y
    ≅-cong✴ _ P.refl _ refl = refl
