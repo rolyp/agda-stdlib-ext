@@ -32,23 +32,9 @@ module Ext where
          {x₁ x₂ y₁ y₂ z₁ z₂} → x₁ ≡ x₂ → y₁ ≡ y₂ → z₁ ≡ z₂ → P x₁ y₁ z₁ → P x₂ y₂ z₂
    subst₃ P P.refl P.refl P.refl p = p
 
-   ≅-subst₃ : ∀ {𝑎 𝑏 𝑐 𝑝} {A : Set 𝑎} {B : Set 𝑏} {C : Set 𝑐} (P : A → B → C → Set 𝑝) →
-              ∀ {x₁ x₂ y₁ y₂ z₁ z₂} → x₁ ≅ x₂ → y₁ ≅ y₂ → z₁ ≅ z₂ → P x₁ y₁ z₁ → P x₂ y₂ z₂
-   ≅-subst₃ P ≅-refl ≅-refl ≅-refl p = p
-
    cong₃ : ∀ {𝑎 𝑏 𝑐 𝑑} {A : Set 𝑎} {B : Set 𝑏} {C : Set 𝑐} {D : Set 𝑑}
            (f : A → B → C → D) {x y u v a b} → x ≡ y → u ≡ v → a ≡ b → f x u a ≡ f y v b
    cong₃ f P.refl P.refl P.refl = P.refl
-
-   ≅-cong₃ : ∀ {𝑎 𝑏 𝑐 𝑑} {A : Set 𝑎} {B : A → Set 𝑏} {C : ∀ x → B x → Set 𝑐} {D : ∀ x → (y : B x) → C x y → Set 𝑑}
-             {x y u v w z}
-           (f : (x : A) (y : B x) (z : C x y) → D x y z) → x ≅ y → u ≅ v → w ≅ z → f x u w ≅ f y v z
-   ≅-cong₃ f ≅-refl ≅-refl ≅-refl = ≅-refl
-
-   -- From http://stackoverflow.com/questions/24139810.
-   hcong : ∀ {𝑖 𝑎 𝑏} {I : Set 𝑖} (A : I → Set 𝑎) {B : {k : I} → A k → Set 𝑏}
-           {i j : I} {x : A i} {y : A j} → i ≡ j → (f : {k : I} → (x : A k) → B x) → x ≅ y → f x ≅ f y
-   hcong _ P.refl _ ≅-refl = ≅-refl
 
    -- Dependently-typed version of cong₂ where f is proof-irrelevant in its second argument.
    cong₂̣ : ∀ {𝑎 𝑏 𝑐} {A : Set 𝑎} {B : A → Set 𝑏} {C : Set 𝑐}
