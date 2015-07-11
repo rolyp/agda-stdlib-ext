@@ -28,19 +28,6 @@ module Ext where
          trans = λ { {i = f} {g} {h} f≃g g≃h x → P.trans (f≃g x) (g≃h x)}
       }
 
-   subst₃ : ∀ {𝑎 𝑏 𝑐 𝑝} {A : Set 𝑎} {B : Set 𝑏} {C : Set 𝑐} (P : A → B → C → Set 𝑝)
-         {x₁ x₂ y₁ y₂ z₁ z₂} → x₁ ≡ x₂ → y₁ ≡ y₂ → z₁ ≡ z₂ → P x₁ y₁ z₁ → P x₂ y₂ z₂
-   subst₃ P P.refl P.refl P.refl p = p
-
-   cong₃ : ∀ {𝑎 𝑏 𝑐 𝑑} {A : Set 𝑎} {B : Set 𝑏} {C : Set 𝑐} {D : Set 𝑑}
-           (f : A → B → C → D) {x y u v a b} → x ≡ y → u ≡ v → a ≡ b → f x u a ≡ f y v b
-   cong₃ f P.refl P.refl P.refl = P.refl
-
-   -- Dependently-typed version of cong₂ where f is proof-irrelevant in its second argument.
-   cong₂̣ : ∀ {𝑎 𝑏 𝑐} {A : Set 𝑎} {B : A → Set 𝑏} {C : Set 𝑐}
-            (f : (a : A) → .(B a) → C) {x y} → x ≡ y → .{u : B x} → .{v : B y} → f x u ≡ f y v
-   cong₂̣ f P.refl = P.refl
-
    swap⁺ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : Set 𝑏} → A ⊎ B → B ⊎ A
    swap⁺ (inj₁ a) = inj₂ a
    swap⁺ (inj₂ b) = inj₁ b
