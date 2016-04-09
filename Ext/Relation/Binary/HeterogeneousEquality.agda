@@ -18,6 +18,10 @@ module Ext.Relation.Binary.HeterogeneousEquality where
               {i j} {x₁ : A i} {x₂ : A j} → i ≡ j → x₁ ≅ x₂ → P x₁ → P x₂
    ≅-subst✴ _ _ P.refl refl p = p
 
+   ≅-subst✴-removable : ∀ {𝑖 𝑎 𝑝} {I : Set 𝑖} (A : I → Set 𝑎) (P : ∀ {k} → A k → Set 𝑝)
+                        {i j} {x₁ : A i} {x₂ : A j} (eq : i ≡ j) (eq′ : x₁ ≅ x₂) z → ≅-subst✴ A P eq eq′ z ≅ z
+   ≅-subst✴-removable _ _ P.refl refl z = refl
+
    ≅-subst✴₂ : ∀ {𝑖 𝑎 𝑏 𝑝} {I : Set 𝑖} (A : I → Set 𝑎) {B : ∀ {k} → A k → Set 𝑏}
                (P : ∀ {k} (x : A k) → B x → Set 𝑝)
                {i j} {x₁ : A i} {x₂ : A j} {y₁ y₂} → i ≡ j → x₁ ≅ x₂ → y₁ ≅ y₂ → P x₁ y₁ → P x₂ y₂

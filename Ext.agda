@@ -8,11 +8,10 @@ module Ext where
    open import Function
    open import Level
    open import Relation.Binary
-   open import Relation.Binary.HeterogeneousEquality using (_≅_) renaming (refl to ≅-refl)
    open import Relation.Binary.PropositionalEquality as P using (_≡_; subst)
    open import Relation.Nullary
 
-   -- Extensional equivalence for functions.
+   -- Extensional equivalence for functions. TODO: rename to ≡ₑ by analogy with ≅ₑ.
    infix 4 _≃ₑ_
    _≃ₑ_ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} (f g : (x : A) → B x) → Set _
    f ≃ₑ g = ∀ x → f x ≡ g x
