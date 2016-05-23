@@ -5,6 +5,13 @@ module Ext.Data.Product where
    open import Level
    open import Relation.Binary.PropositionalEquality
 
+   ,-injective₁ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : A → Set 𝑏} {ab cd : Σ[ a ∈ A ] B a} → ab ≡ cd → proj₁ ab ≡ proj₁ cd
+   ,-injective₁ refl = refl
+
+   -- Non-dependent version for now.
+   ,-injective₂ : ∀ {𝑎 𝑏} {A : Set 𝑎} {B : Set 𝑏} {ab cd : A × B} → ab ≡ cd → proj₂ ab ≡ proj₂ cd
+   ,-injective₂ refl = refl
+
    _₁ : ∀ {𝑎 𝑏 𝑐} {A : Set 𝑎} {B : A → Set 𝑏} {X : Set 𝑐} → (A → X) → Σ[ a ∈ A ] (B a) → X
    f ₁ = f ∘ proj₁
 
